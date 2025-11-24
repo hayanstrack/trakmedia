@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrackMedia — Modern Digital Media That Performs</title>
+  <meta name="description" content="TrackMedia is a digital media startup delivering sharp, modern, and results-focused creative services for creators, gamers, and small businesses." />
+  <meta name="theme-color" content="#00e5ff" />
+  <meta property="og:title" content="TrackMedia — Modern Digital Media That Performs" />
+  <meta property="og:description" content="Clean visuals, consistent branding, and systems that actually improve your online identity." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=TrackMedia" />
+  <link rel="icon" href="data:image/svg+xml,
+  %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2300e5ff'/%3E%3Ctext x='50' y='58' font-size='52' text-anchor='middle' fill='black' font-family='Arial'%3ETM%3C/text%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0a0b0d;
+      --bg-2:#0f1116;
+      --text:#e8eaf0;
+      --muted:#a9afc6;
+      --accent:#00e5ff;
+      --accent-2:#6c63ff;
+      --card:#111319cc; /* glass */
+      --border:#1f2330;
+      --success:#23d18b;
+    }
+    /* RESET */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;background:radial-gradient(1200px 600px at 80% 0%, #121421 0%, #0a0b0d 60%), var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    h1,h2,h3{margin:0 0 .4rem;font-weight:800}
+    p{margin:0 0 1rem}
+    /* LAYOUT */
+    .container{width:min(1100px, 92%);margin:0 auto}
+    section{padding:5.5rem 0;position:relative}
+    .section-title{font-size:2rem;letter-spacing:.2px}
+    .section-sub{color:var(--muted);margin-top:.4rem}
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      backdrop-filter:saturate(160%) blur(12px);
+      background:linear-gradient(180deg, #0f1116ee, #0f1116c0 60%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2));
+      box-shadow:0 0 24px #00e5ff33;
+    }
+    .nav-links{Display:flex;gap:1.2rem}
+    .nav-links a{padding:.5rem .7rem;border-radius:8px;color:var(--muted);font-weight:600}
+    .nav-links a:hover{color:var(--text);background:#141722}
+
+    .hero{
+      min-height:92vh;display:grid;place-items:center;padding-top:6rem;
+      background:
+        radial-gradient(800px 400px at 15% 15%, #0f1629 0%, transparent 60%),
+        radial-gradient(600px 300px at 90% 0%, #101734 0%, transparent 55%);
+    }
+    .hero-wrap{display:grid;gap:1.4rem;text-align:center}
+    .hero h1{font-size:3rem}
+    .hero p{color:var(--muted);font-size:1.1rem;max-width:720px;margin:0 auto}
+    .hero-ctas{display:flex;gap:1rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-radius:12px;
+      font-weight:700;border:1px solid #1a1f2e;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary{background:linear-gradient(180deg, var(--accent), #00c8e0);color:#041a20;box-shadow:0 8px 24px #00e5ff33}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px #00e5ff55}
+    .btn-outline{background:#141722;color:var(--text)}
+    .btn-outline:hover{background:#182035}
+
+    /* BADGES / STATS */
+    .badges{display:flex;gap:1rem;justify-content:center;margin-top:.6rem;flex-wrap:wrap}
+    .badge{padding:.4rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-weight:600;background:#0f1320}
+
+    /* GRID CARDS */
+    .grid{display:grid;gap:1.2rem}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:960px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+    .card{
+      background:linear-gradient(180deg, #121522aa, #10131d99);
+      border:1px solid var(--border);
+      border-radius:16px;padding:1.2rem;
+      box-shadow:inset 0 1px 0 #ffffff0a, 0 10px 30px #00000040;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 16px 40px #00000066;border-color:#2a3147}
+    .card h3{font-size:1.2rem}
+    .card p{color:var(--muted)}
+
+    /* SERVICES ICONS */
+    .svc{display:flex;gap:.8rem;align-items:flex-start}
+    .svc .ico{
+      width:38px;height:38px;border-radius:10px;flex:0 0 38px;
+      background:linear-gradient(180deg, #1b2033, #131827);
+      border:1px solid #283049;display:grid;place-items:center;color:var(--accent);
+      box-shadow:0 6px 16px #00000055;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid{display:grid;gap:1rem;grid-template-columns:repeat(12,1fr)}
+    .item{grid-column:span 4;background:#0e121d;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .item.large{grid-column:span 8}
+    .item img{aspect-ratio:16/10;width:100%;object-fit:cover}
+    .item .meta{padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center}
+    .pill{padding:.3rem .6rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.85rem}
+
+    @media (max-width:960px){
+      .item{grid-column:span 6}
+      .item.large{grid-column:span 12}
+    }
+    @media (max-width:640px){
+      .item{grid-column:span 12}
+    }
+    /* TESTIMONIALS */
+    .carousel{position:relative}
+    .slides{display:flex;gap:1rem;overflow:hidden}
+    .t-card{min-width:320px;background:#0e121d;border:1px solid var(--border);border-radius:16px;padding:1.2rem}
+    .t-card p{font-style:italic;color:#cfd6ea}
+    .t-card .name{margin-top:.8rem;color:var(--accent);font-weight:700}
+    .car-ctrl{display:flex;gap:.6rem;margin-top:1rem}
+    .car-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:#141722;color:var(--text)}
+    .car-btn:hover{background:#182035}
+
+    /* ABOUT SPLIT */
+    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:1.4rem}
+    .about-card{
+      background:linear-gradient(180deg,#13182caa,#0f1324aa);
+      border:1px solid var(--border);border-radius:16px;padding:1.2rem
+    }
+    .about-visual{
+      background:radial-gradient(400px 240px at 60% 30%, #1a2250 0%, transparent 60%), #0d111b;
+      border:1px solid var(--border);border-radius:16px;display:grid;place-items:center;padding:1rem
+    }
+    .pulse{
+      width:120px;height:120px;border-radius:999px;
+      background:radial-gradient(circle at 50% 50%, #00e5ff 0%, #00e5ff22 35%, transparent 70%);
+      box-shadow:0 0 60px #00e5ff55;
+      animation:pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+    /* WHY CHOOSE */
+    .why-grid{display:grid;gap:.9rem;grid-template-columns:repeat(2,1fr)}
+    @media (max-width:640px){.why-grid{grid-template-columns:1fr}}
+
+    /* CONTACT */
+    .contact{
+      background:linear-gradient(180deg,#0f1116,#0a0b0d 60%);
+      border:1px solid var(--border);border-radius:18px;padding:1.2rem
+    }
+    form{display:grid;gap:.9rem}
+    input,textarea{
+      background:#111526;border:1px solid #22283a;color:var(--text);
+      padding:.9rem;border-radius:12px;outline:none
+    }
+    input::placeholder,textarea::placeholder{color:#7f89a8}
+    textarea{min-height:130px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    @media (max-width:640px){.form-row{grid-template-columns:1fr}}
+
+    /* FOOTER */
+    footer{padding:2.4rem 0;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+    .footer-rows{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .social{display:flex;gap:.8rem}
+    .social a{padding:.5rem .7rem;border:1px solid var(--border);border-radius:10px;background:#131827;color:#cfd6ea}
+    .social a:hover{background:#182035}
+
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* CTA STRIP */
+    .cta-strip{
+      margin-top:2rem;padding:1rem;border:1px dashed #273049;border-radius:14px;background:#0f1320;color:#cfd6ea;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap
+    }
+
+    /* SMALL UTILS */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+ <nav class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <!-- Logo image -->
+      <img src="images/logo.png" alt="TrackMedia Logo" class="logo" />
+      <!-- Brand name -->
+      <span>TrackMedia</span>
+    </div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Essentials -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrackMedia — Modern Digital Media That Performs</title>
+  <meta name="description" content="TrackMedia is a digital media startup delivering sharp, modern, and results-focused creative services for creators, gamers, and small businesses." />
+  <meta name="theme-color" content="#00e5ff" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="TrackMedia — Modern Digital Media That Performs" />
+  <meta property="og:description" content="Clean visuals, consistent branding, and systems that actually improve your online identity." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og-banner.jpg" />
+  <meta property="og:url" content="https://trackmedia.studio" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TrackMedia — Modern Digital Media That Performs" />
+  <meta name="twitter:description" content="Clean visuals, consistent branding, and systems that actually improve your online identity." />
+  <meta name="twitter:image" content="images/og-banner.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,
+  %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2300e5ff'/%3E%3Ctext x='50' y='60' font-size='52' text-anchor='middle' fill='%23041a20' font-family='Arial'%3ETM%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TrackMedia",
+    "url": "https://trackmedia.studio",
+    "logo": "https://trackmedia.studio/images/logo.png",
+    "sameAs": [
+      "https://instagram.com/yourusername",
+      "https://discord.gg/yourinvitecode",
+      "https://youtube.com/@yourchannel"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0a0b0d;
+      --bg-2:#0f1116;
+      --text:#e8eaf0;
+      --muted:#a9afc6;
+      --accent:#00e5ff;
+      --accent-2:#6c63ff;
+      --card:#111319cc;
+      --border:#1f2330;
+      --success:#23d18b;
+    }
+    /* RESET */
+    *,*::before,*::after{box-sizing:border-box}
+    html:focus-within{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 80% 0%, #121421 0%, #0a0b0d 60%), var(--bg);
+      color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    h1,h2,h3{margin:0 0 .4rem;font-weight:800}
+    p{margin:0 0 1rem}
+    /* LAYOUT */
+    .container{width:min(1100px, 92%);margin:0 auto}
+    section{padding:5.5rem 0;position:relative}
+    .section-title{font-size:2rem;letter-spacing:.2px}
+    .section-sub{color:var(--muted);margin-top:.4rem}
+    /* Skip link */
+    .skip-link{position:absolute;top:-40px;left:0;background:#041a20;color:#fff;padding:.6rem 1rem;border-radius:8px;z-index:2000}
+    .skip-link:focus{top:10px}
+
+    /* NAV */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      backdrop-filter:saturate(160%) blur(12px);
+      background:linear-gradient(180deg, #0f1116ee, #0f1116c0 60%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:.8rem;font-weight:800}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2));
+      box-shadow:0 0 24px #00e5ff33;
+    }
+    .nav-links{display:flex;gap:1.2rem}
+    .nav-links a{padding:.5rem .7rem;border-radius:8px;color:var(--muted);font-weight:600}
+    .nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--text);background:#141722}
+
+    /* HERO */
+    .hero{
+      min-height:92vh;display:grid;place-items:center;padding-top:6rem;
+      background:
+        radial-gradient(800px 400px at 15% 15%, #0f1629 0%, transparent 60%),
+        radial-gradient(600px 300px at 90% 0%, #101734 0%, transparent 55%);
+    }
+    .hero-wrap{display:grid;gap:1.4rem;text-align:center}
+    .hero h1{font-size:3rem}
+    .hero p{color:var(--muted);font-size:1.1rem;max-width:720px;margin:0 auto}
+    .hero-ctas{display:flex;gap:1rem;justify-content:center;margin-top:1rem;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-radius:12px;
+      font-weight:700;border:1px solid #1a1f2e;transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary{background:linear-gradient(180deg, var(--accent), #00c8e0);color:#041a20;box-shadow:0 8px 24px #00e5ff33}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px #00e5ff55}
+    .btn-outline{background:#141722;color:var(--text)}
+    .btn-outline:hover{background:#182035}
+
+    /* BADGES */
+    .badges{display:flex;gap:1rem;justify-content:center;margin-top:.6rem;flex-wrap:wrap}
+    .badge{padding:.4rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-weight:600;background:#0f1320}
+
+    /* GRID */
+    .grid{display:grid;gap:1.2rem}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:960px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+    .card{
+      background:linear-gradient(180deg, #121522aa, #10131d99);
+      border:1px solid var(--border);
+      border-radius:16px;padding:1.2rem;
+      box-shadow:inset 0 1px 0 #ffffff0a, 0 10px 30px #00000040;
+      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 16px 40px #00000066;border-color:#2a3147}
+    .card h3{font-size:1.2rem}
+    .card p{color:var(--muted)}
+
+    /* SERVICES ICONS */
+    .svc{display:flex;gap:.8rem;align-items:flex-start}
+    .svc .ico{
+      width:38px;height:38px;border-radius:10px;flex:0 0 38px;
+      background:linear-gradient(180deg, #1b2033, #131827);
+      border:1px solid #283049;display:grid;place-items:center;color:var(--accent);
+      box-shadow:0 6px 16px #00000055;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-grid{display:grid;gap:1rem;grid-template-columns:repeat(12,1fr)}
+    .item{grid-column:span 4;background:#0e121d;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .item.large{grid-column:span 8}
+    .item img{aspect-ratio:16/10;width:100%;object-fit:cover}
+    .item .meta{padding:.8rem 1rem;display:flex;justify-content:space-between;align-items:center}
+    .pill{padding:.3rem .6rem;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.85rem}
+
+    @media (max-width:960px){
+      .item{grid-column:span 6}
+      .item.large{grid-column:span 12}
+    }
+    @media (max-width:640px){
+      .item{grid-column:span 12}
+    }
+
+    /* TESTIMONIALS */
+    .carousel{position:relative}
+    .slides{display:flex;gap:1rem;overflow:hidden}
+    .t-card{min-width:320px;background:#0e121d;border:1px solid var(--border);border-radius:16px;padding:1.2rem}
+    .t-card p{font-style:italic;color:#cfd6ea}
+    .t-card .name{margin-top:.8rem;color:var(--accent);font-weight:700}
+    .car-ctrl{display:flex;gap:.6rem;margin-top:1rem}
+    .car-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:#141722;color:var(--text)}
+    .car-btn:hover{background:#182035}
+
+    /* ABOUT SPLIT */
+    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:1.4rem}
+    .about-card{
+      background:linear-gradient(180deg,#13182caa,#0f1324aa);
+      border:1px solid var(--border);border-radius:16px;padding:1.2rem
+    }
+    .about-visual{
+      background:radial-gradient(400px 240px at 60% 30%, #1a2250 0%, transparent 60%), #0d111b;
+      border:1px solid var(--border);border-radius:16px;display:grid;place-items:center;padding:1rem
+    }
+    .pulse{
+      width:120px;height:120px;border-radius:999px;
+      background:radial-gradient(circle at 50% 50%, #00e5ff 0%, #00e5ff22 35%, transparent 70%);
+      box-shadow:0 0 60px #00e5ff55;
+      animation:pulse 3s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+    /* WHY CHOOSE */
+    .why-grid{display:grid;gap:.9rem;grid-template-columns:repeat(2,1fr)}
+    @media (max-width:640px){.why-grid{grid-template-columns:1fr}}
+
+    /* CONTACT */
+    .contact{
+      background:linear-gradient(180deg,#0f1116,#0a0b0d 60%);
+      border:1px solid var(--border);border-radius:18px;padding:1.2rem
+    }
+    form{display:grid;gap:.9rem}
+    input,textarea{
+      background:#111526;border:1px solid #22283a;color:var(--text);
+      padding:.9rem;border-radius:12px;outline:none
+    }
+    input::placeholder,textarea::placeholder{color:#7f89a8}
+    textarea{min-height:130px;resize:vertical}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+    @media (max-width:640px){.form-row{grid-template-columns:1fr}}
+
+    /* FOOTER */
+    footer{padding:2.4rem 0;color:var(--muted);border-top:1px solid var(--border);margin-top:2rem}
+    .footer-rows{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .social{display:flex;gap:.8rem}
+    .social a{padding:.5rem .7rem;border:1px solid var(--border);border-radius:10px;background:#131827;color:#cfd6ea}
+    .social a:hover{background:#182035}
+
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* CTA STRIP */
+    .cta-strip{
+      margin-top:2rem;padding:1rem;border:1px dashed #273049;border-radius:14px;background:#0f1320;color:#cfd6ea;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="TrackMedia logo" class="logo" />
+        <span>TrackMedia</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home" aria-current="page">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container hero-wrap reveal">
+      <h1>Modern digital media that performs</h1>
+      <p>Clean visuals, consistent branding, and systems that actually improve your online identity. Built for creators, gamers, and small businesses who want real growth.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Work with us</a>
+        <a class="btn btn-outline" href="#portfolio">See our work</a>
+      </div>
+      <div class="badges" aria-label="Highlights">
+        <span class="badge">Fast delivery</span>
+        <span class="badge">Consistent branding</span>
+        <span class="badge">Practical social media knowledge</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container split reveal">
+      <div class="about-card">
+        <h2 id="about-title" class="section-title">About TrackMedia</h2>
+        <p>TrackMedia is a digital media startup delivering sharp, modern, and results-focused creative services. We work with creators, gamers, and small businesses who want real growth, not just aesthetic posts. Our focus is simple: clean visuals, consistent branding, and systems that actually improve your online identity.</p>
+        <p>We design brand assets, manage social media pages, build Discord servers, create thumbnails, and produce high-quality posters for promotions, events, and businesses. Everything we make is practical, minimal, and built to perform online — not just look good for a day.</p>
+        <p>TrackMedia is driven by a fast-learning, multi-skill creator who understands trends, design, and online engagement. No noise. No overcomplication. Just modern digital work done properly.</p>
+
+        <div class="cta-strip" role="group" aria-label="Mission">
+          <div>
+            <strong>Mission:</strong> To help creators and small brands look professional, grow faster, and build a strong digital identity.
+          </div>
+          <a class="btn btn-primary" href="#services">Explore services</a>
+        </div>
+      </div>
+      <div class="about-visual" aria-hidden="true">
+        <div class="pulse" title="TrackMedia pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="container reveal">
+      <h2 id="services-title" class="section-title">Services</h2>
+      <p class="section-sub">Clean & direct — built to perform online, not just look good for a day.</p>
+
+      <div class="grid cols-3" style="margin-top:1rem">
+        <div class="card svc">
+          <div class="ico" aria-hidden="true">🎨</div>
+          <div>
+            <h3>Brand Design</h3>
+            <p>Logos, posters, banners, thumbnails, and complete visual identity design.</p>
+          </div>
+        </div>
+
+        <div class="card svc">
+          <div class="ico" aria-hidden="true">📱</div>
+          <div>
+            <h3>Instagram Management</h3>
+            <p>Page setup, bio optimization, content planning, growth strategy, and regular posting.</p>
+          </div>
+        </div>
+
+        <div class="card svc">
+          <div class="ico" aria-hidden="true">🛡️</div>
+          <div>
+            <h3>Discord Server Setup</h3>
+            <p>Full server setup, channels, roles, permissions, bot automation, branding, and moderation systems.</p>
+          </div>
+        </div>
+
+        <div class="card svc">
+          <div class="ico" aria-hidden="true">🎮</div>
+          <div>
+            <h3>Gaming Thumbnails & Banners</h3>
+            <p>High-impact thumbnails and banners designed for YouTube, eSports teams, and gaming creators.</p>
+          </div>
+        </div>
+
+        <div class="card svc">
+          <div class="ico" aria-hidden="true">🖥️</div>
+          <div>
+            <h3>Web Design</h3>
+            <p>Simple, responsive websites built with modern layouts and clean UI.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.2rem" class="grid cols-2">
+        <div class="card">
+          <h3>Mission statement</h3>
+          <p><strong>To help creators and small brands look professional, grow faster, and build a strong digital identity.</strong></p>
+        </div>
+        <div class="card">
+          <h3>Why choose TrackMedia</h3>
+          <ul style="margin:.6rem 0 0;padding-left:1rem">
+            <li>Clean modern design</li>
+            <li>Fast delivery</li>
+            <li>Consistent branding</li>
+            <li>Practical social media knowledge</li>
+            <li>Multi-skill digital creator backing the project</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" aria-labelledby="portfolio-title">
+    <div class="container reveal">
+      <h2 id="portfolio-title" class="section-title">Our work</h2>
+      <p class="section-sub">A few highlights from recent projects.</p>
+
+      <div class="portfolio-grid" role="list">
+        <div class="item large" role="listitem">
+          <img src="images/portfolio-hero.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Brand Design</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="item" role="listitem">
+          <img src="images/portfolio-web-1.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Web Design</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="item" role="listitem">
+          <img src="images/portfolio-ig-1.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Instagram</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="item" role="listitem">
+          <img src="images/portfolio-discord.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Discord</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="item" role="listitem">
+          <img src="images/portfolio-car.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Reels</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="item" role="listitem">
+          <img src="images/portfolio-gaming.jpg" alt="" loading="lazy">
+          <div class="meta">
+            <span class="pill">Gaming</span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip">
+        <div><strong>Want more examples?</strong> Ask for case studies with metrics.</div>
+        <a class="btn btn-outline" href="91+ 9846298839">Start your project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" aria-labelledby="testimonials-title">
+    <div class="container reveal">
+      <h2 id="testimonials-title" class="section-title">What clients say</h2>
+      <p class="section-sub">Real feedback from creators and small brands.</p>
+
+      <div class="carousel" aria-label="Client testimonials">
+        <div class="slides" id="slides">
+          <div class="t-card" role="group" aria-roledescription="slide">
+            <p>"TrackMedia transformed our visuals and made our page feel professional."</p>
+            <div class="name"></div>
+          </div>
+          <div class="t-card" role="group" aria-roledescription="slide">
+            <p>"Fast delivery and clean design. Exactly what we needed to grow."</p>
+            <div class="name"></div>
+          </div>
+          <div class="t-card" role="group" aria-roledescription="slide">
+            <p>"Discord setup was flawless: roles, bots, moderation — all done right."</p>
+            <div class="name"></div>
+          </div>
+        </div>
+        <div class="car-ctrl" role="group" aria-label="Carousel controls">
+          <button class="car-btn" id="prev" aria-label="Previous">‹</button>
+          <button class="car-btn" id="next" aria-label="Next">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container reveal">
+      <h2 id="contact-title" class="section-title">Start a project</h2>
+      <p class="section-sub">Tell us what you need — we’ll respond fast.</p>
+
+      <div class="contact" aria-label="Project intake form">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfRHc6leOk7UVqsIW42rzRvQXnVp26MI_tqCVBO8LTtLztQPQ/viewform?usp=header"
+        width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">
+  Loading…
+</iframe>
+
+      <div class="cta-strip" style="margin-top:1.2rem">
+        <div>
+          <strong>Prefer social?</strong> Find us on Instagram and Discord — we reply quick.
+        </div>
+        <div class="social" role="group" aria-label="Social links">
+          <a href="https://instagram.com/hayanstrack" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+          <a href="https://discord.gg/AEcmVAQYyp" target="_blank" rel="noopener" aria-label="Discord">Discord</a>
+          <a href="mailto:trackmedia123#gmail.com" aria-label="Email">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="container footer-rows">
+      <div>© 2025 TrackMedia. All rights reserved.</div>
+      <div class="social">
+        <a href="https://instagram.com/hayanstrack" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@hayanstrack2.O" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://discord.gg/AEcmVAQYyp" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Utility: throttle
+    function throttle(fn, wait) {
+      let t = null;
+      return function(...args){
+        if (t) return;
+        t = setTimeout(()=>{ fn.apply(this,args); t=null; }, wait);
+      }
+    }
+
+    // Smooth reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    },{threshold:0.15});
+    revealEls.forEach(el=>io.observe(el));
+
+    // Testimonials carousel
+    const slides = document.getElementById('slides');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    let idx = 0;
+
+    function update(){
+      slides.style.transform = `translateX(${-idx*340}px)`;
+      slides.style.transition = 'transform .4s ease';
+    }
+    function clampIndex(i){
+      return Math.max(0, Math.min(slides.children.length-1, i));
+    }
+    prev.addEventListener('click',()=>{ idx = clampIndex(idx-1); update(); });
+    next.addEventListener('click',()=>{ idx = clampIndex(idx+1); update(); });
+
+    // Auto-play (pause on hover / reduced motion)
+    let autoplay = null;
+    function startAuto(){
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAuto();
+      autoplay = setInterval(()=>{ idx = (idx+1) % slides.children.length; update(); }, 5000);
+    }
+    function stopAuto(){ if (autoplay) { clearInterval(autoplay); autoplay = null; } }
+    slides.addEventListener('mouseenter', stopAuto);
+    slides.addEventListener('mouseleave', startAuto);
+    startAuto();
+
+    // Update nav active state on scroll
+    const sections = ['home','about','services','portfolio','testimonials','contact']
+      .map(id => document.getElementById(id));
+    const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+    const highlight = throttle(()=>{
+      let current = sections[0].id;
+      const fromTop = window.scrollY + 80;
+      sections.forEach(sec=>{
+        if (sec.offsetTop <= fromTop) current = sec.id;
+      });
+      navLinks.forEach(a=>{
+        a.removeAttribute('aria-current');
+        if (a.getAttribute('href') === `#${current}`){
+          a.setAttribute('aria-current','page');
+        }
+      });
+    }, 150);
+    window.addEventListener('scroll', highlight);
+    window.addEventListener('load', highlight);
+  </script>
+</body>
+</html>
